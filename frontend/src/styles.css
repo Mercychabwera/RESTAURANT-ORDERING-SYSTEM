@@ -1,0 +1,637 @@
+:root {
+  color: #17120b;
+  background: #fff2c2;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(rgba(8, 8, 8, 0.74), rgba(148, 32, 22, 0.58)),
+    url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Assorted%20Malawian%20food%2C%20Blantyre.jpg?width=1600") center/cover;
+  padding: 24px;
+}
+
+.login-panel {
+  width: min(430px, 100%);
+  background: #fff8df;
+  border: 1px solid #ffc928;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 24px 70px rgba(12, 9, 5, 0.36);
+}
+
+.login-mark {
+  width: 70px;
+  height: 70px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #d62d20;
+  border-radius: 8px;
+  margin-bottom: 18px;
+}
+
+.login-panel h1,
+.topbar h1,
+.panel h2 {
+  margin: 0;
+  letter-spacing: 0;
+}
+
+.login-panel p {
+  color: #684d22;
+  line-height: 1.5;
+}
+
+.login-panel form,
+.stack {
+  display: grid;
+  gap: 16px;
+}
+
+label {
+  display: grid;
+  gap: 7px;
+  color: #251c0d;
+  font-weight: 800;
+}
+
+input,
+select {
+  min-height: 44px;
+  border: 1px solid #daa81f;
+  border-radius: 6px;
+  padding: 0 12px;
+  background: #fffdf5;
+  color: #17120b;
+}
+
+.primary,
+.secondary,
+.logout,
+.nav-item,
+.actions button,
+.split-actions button {
+  min-height: 42px;
+  border: 0;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 900;
+}
+
+.primary {
+  color: #17120b;
+  background: #ffc928;
+}
+
+.primary:hover {
+  background: #ffd957;
+}
+
+.primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.secondary,
+.actions button,
+.split-actions button {
+  background: #111;
+  color: #ffc928;
+  padding: 0 14px;
+}
+
+.secondary:hover,
+.actions button:hover,
+.split-actions button:hover {
+  background: #d62d20;
+  color: #fff;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 250px 1fr;
+}
+
+.sidebar {
+  background: #0f0f0f;
+  color: #fff4cf;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.brand span {
+  display: block;
+  color: #ffc928;
+  font-size: 0.9rem;
+}
+
+nav {
+  display: grid;
+  gap: 10px;
+}
+
+.nav-item,
+.logout {
+  width: 100%;
+  justify-content: flex-start;
+  padding: 0 14px;
+  background: transparent;
+  color: #fff4cf;
+}
+
+.nav-item.active,
+.nav-item:hover,
+.logout:hover {
+  background: #d62d20;
+  color: #fff;
+}
+
+.logout {
+  margin-top: auto;
+}
+
+.content {
+  padding: 28px;
+  overflow: auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.topbar h1 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: #b22a20;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.notice {
+  margin: 0 0 22px;
+  border-radius: 8px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.notice span {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 900;
+  font-size: 0.78rem;
+}
+
+.notice p {
+  margin: 0;
+}
+
+.notice.connected {
+  background: #fff1b5;
+  border: 1px solid #ffc928;
+  color: #17120b;
+}
+
+.notice.connected span {
+  background: #111;
+  color: #ffc928;
+}
+
+.notice.offline {
+  background: #ffe1db;
+  border: 1px solid #d62d20;
+  color: #751b13;
+}
+
+.notice.offline span {
+  background: #d62d20;
+  color: #fff;
+}
+
+.grid {
+  display: grid;
+  gap: 18px;
+}
+
+.grid.two {
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.6fr);
+}
+
+.grid.wide-left {
+  grid-template-columns: minmax(0, 1fr) minmax(330px, 410px);
+}
+
+.grid.three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.panel,
+.metric {
+  background: #fff8df;
+  border: 1px solid #ffc928;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(20, 13, 2, 0.06);
+}
+
+.full {
+  grid-column: 1 / -1;
+}
+
+.table {
+  display: grid;
+  margin-top: 16px;
+  overflow: auto;
+}
+
+.table-row {
+  min-width: 680px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 0.8fr;
+  gap: 12px;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid #f2cf66;
+}
+
+.bill-table .table-row {
+  grid-template-columns: 0.5fr 1fr 0.8fr 0.8fr 1.2fr;
+}
+
+.table-head {
+  color: #9b251c;
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.meal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.meal-tile {
+  min-height: 236px;
+  text-align: left;
+  border: 1px solid #ffc928;
+  border-radius: 8px;
+  background: #fff4cf;
+  padding: 0;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 130px auto auto auto;
+  align-content: start;
+  gap: 7px;
+}
+
+.meal-tile:hover {
+  border-color: #d62d20;
+  background: #ffe8a3;
+}
+
+.meal-tile span,
+.muted,
+.order-card span {
+  color: #684d22;
+}
+
+.meal-tile img,
+.food-card img,
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.meal-tile strong,
+.meal-tile span,
+.meal-tile b {
+  padding: 0 12px;
+}
+
+.meal-tile b {
+  padding-bottom: 12px;
+  color: #b22a20;
+}
+
+.category-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.category-pill {
+  min-height: 38px;
+  border: 1px solid #ffc928;
+  border-radius: 999px;
+  background: #fff4cf;
+  color: #17120b;
+  padding: 0 15px;
+  font-weight: 900;
+}
+
+.category-pill.active,
+.category-pill:hover {
+  background: #111;
+  color: #ffc928;
+  border-color: #111;
+}
+
+.menu-picture-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 14px;
+}
+
+.food-card {
+  min-height: 260px;
+  border: 1px solid #ffc928;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff4cf;
+  display: grid;
+  grid-template-rows: 155px 1fr;
+}
+
+.food-card div {
+  padding: 13px;
+  display: grid;
+  gap: 6px;
+}
+
+.food-card span,
+.category-card span {
+  color: #684d22;
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.food-card b {
+  color: #b22a20;
+}
+
+.category-showcase {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.category-card {
+  min-height: 150px;
+  border: 1px solid #ffc928;
+  border-radius: 8px;
+  background: #fff4cf;
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 86px auto auto;
+}
+
+.category-card strong,
+.category-card span {
+  padding: 0 10px;
+}
+
+.category-card strong {
+  padding-top: 8px;
+}
+
+.category-card span {
+  padding-bottom: 10px;
+}
+
+.cart-list {
+  min-height: 120px;
+  display: grid;
+  align-content: start;
+  gap: 8px;
+}
+
+.cart-item,
+.total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.total {
+  padding-top: 14px;
+  border-top: 1px solid #f2cf66;
+  font-size: 1.15rem;
+}
+
+.order-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.order-board.compact {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+}
+
+.order-card {
+  border: 1px solid #ffc928;
+  border-radius: 8px;
+  padding: 16px;
+  background: #fff4cf;
+  display: grid;
+  gap: 12px;
+}
+
+.order-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.status {
+  width: fit-content;
+  margin: 0;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 0.78rem;
+  font-weight: 900;
+  color: #17120b;
+  background: #ffc928;
+}
+
+.status.ready,
+.status.served {
+  color: #ffc928;
+  background: #111;
+}
+
+.status.cancelled {
+  color: #fff;
+  background: #d62d20;
+}
+
+.actions,
+.split-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.metric {
+  display: grid;
+  gap: 8px;
+}
+
+.metric span {
+  color: #684d22;
+  font-weight: 800;
+}
+
+.metric strong {
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+/* Welcome screen typing */
+.welcome-typed {
+  margin: 0;
+  padding: 0;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  letter-spacing: 0.02em;
+  font-weight: 1000;
+  text-transform: uppercase;
+}
+
+/* Minimal layout for welcome page so it looks good */
+.welcome-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  background:
+    linear-gradient(rgba(8, 8, 8, 0.74), rgba(148, 32, 22, 0.58)),
+    url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Assorted%20Malawian%20food%2C%20Blantyre.jpg?width=1600") center/cover;
+  padding: 24px;
+}
+
+.welcome-content {
+  width: min(720px, 100%);
+  background: #fff8df;
+  border: 1px solid #ffc928;
+  border-radius: 10px;
+  padding: 34px;
+  box-shadow: 0 24px 70px rgba(12, 9, 5, 0.36);
+  text-align: center;
+  display: grid;
+  gap: 14px;
+}
+
+.welcome-mark {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #d62d20;
+  border-radius: 12px;
+}
+
+.welcome-content .primary.welcome-button {
+  justify-self: center;
+  min-width: 220px;
+}
+
+@media (max-width: 860px) {
+  .app-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+  }
+
+  nav {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+
+  .nav-item {
+    justify-content: center;
+    padding: 0;
+  }
+
+  .nav-item span {
+    display: none;
+  }
+
+  .logout {
+    margin-top: 0;
+  }
+
+  .grid.two,
+  .grid.wide-left,
+  .grid.three {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .notice {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
