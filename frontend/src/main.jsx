@@ -14,26 +14,32 @@ import {
   UserRound,
 } from "lucide-react";
 import "./styles.css";
+import heroImage from "./assets/restaurant-hero.jpg";
+import nsimaImage from "./assets/nsima.jpg";
+import chamboImage from "./assets/chambo.jpg";
+import pizzaImage from "./assets/pizza.jpg";
+import burgerImage from "./assets/burger.jpg";
+import saladImage from "./assets/salad.jpg";
 import { api, formatMwk } from "./services/api";
 
 
 
 const malawiImages = {
-  nsima: "https://malawiplus.com/wp-content/uploads/2022/05/food1.jpg",
-  nsimaChicken: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Food%20in%20Malawi%20-%20chicken%20-%20green%20plate%20-%20Jan%202018.jpg?width=900",
-  nsimaPlate: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Nsima%20-%20on%20a%20plate%20-%20Malawi%20-%20Jan%202018%20.jpg?width=700",
-  chambo: "https://malawiplus.com/wp-content/uploads/2022/05/food3.jpg",
-  friedChambo: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Fried%20Chambo.JPG?width=700",
-  chiwaya: "https://malawiplus.com/wp-content/uploads/2022/05/Chiwaya.jpg",
-  localDish: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Local%20Dish%20Local%20Restaurant.jpg?width=900",
-  assorted: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Assorted%20Malawian%20food%2C%20Blantyre.jpg?width=900",
-  okraTomato: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Okra%20and%20Tomato%2C%20malawi.jpg?width=800",
-  greens: "https://commons.wikimedia.org/wiki/Special:Redirect/file/N%27khwani%20otendera.JPG?width=800",
-  chicken: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Boiled%20local%20chicken.JPG?width=700",
-  mandasi: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Malawi%27s%20fritters.JPG?width=700",
-  fishChips: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Fish%20and%20chips%2C%20the%20Malawian%20way.jpg?width=800",
-  pizza: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Pepperoni%20pizza.jpg?width=900",
-  burger: "https://commons.wikimedia.org/wiki/Special:Redirect/file/Big%20Mac%20hamburger.jpg?width=900",
+  nsima: nsimaImage,
+  nsimaChicken: nsimaImage,
+  nsimaPlate: nsimaImage,
+  chambo: chamboImage,
+  friedChambo: chamboImage,
+  chiwaya: burgerImage,
+  localDish: heroImage,
+  assorted: saladImage,
+  okraTomato: saladImage,
+  greens: saladImage,
+  chicken: burgerImage,
+  mandasi: pizzaImage,
+  fishChips: chamboImage,
+  pizza: pizzaImage,
+  burger: burgerImage,
 };
 
 const fallbackMenu = [
@@ -214,6 +220,7 @@ function WelcomePage({ onContinue }) {
   return (
     <main className="welcome-page">
       <section className="welcome-content">
+        <img className="welcome-hero" src={heroImage} alt="Restaurant dining experience" />
         <div className="welcome-mark">
           <ChefHat size={54} />
         </div>

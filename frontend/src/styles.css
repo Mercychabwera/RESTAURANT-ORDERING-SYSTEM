@@ -13,11 +13,36 @@ body {
   min-width: 320px;
 }
 
-button,
-input,
-select {
-  font: inherit;
+.welcome-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    linear-gradient(rgba(8, 8, 8, 0.24), rgba(148, 32, 22, 0.28)),
+    url("./assets/restaurant-hero.jpg") center/cover no-repeat;
 }
+
+.welcome-content {
+  width: min(700px, 100%);
+  background: rgba(255, 248, 223, 0.96);
+  border: 1px solid #ffc928;
+  border-radius: 20px;
+  padding: 34px 34px 28px;
+  box-shadow: 0 28px 80px rgba(12, 9, 5, 0.28);
+  display: grid;
+  gap: 20px;
+  text-align: center;
+}
+
+.welcome-hero {
+  width: 100%;
+  max-height: 340px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid #ffc928;
+}
+
 
 button {
   cursor: pointer;
@@ -29,7 +54,7 @@ button {
   place-items: center;
   background:
     linear-gradient(rgba(8, 8, 8, 0.74), rgba(148, 32, 22, 0.58)),
-    url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Assorted%20Malawian%20food%2C%20Blantyre.jpg?width=1600") center/cover;
+    url("./assets/restaurant-hero.jpg") center/cover;
   padding: 24px;
 }
 
@@ -559,7 +584,7 @@ nav {
   place-items: center;
   background:
     linear-gradient(rgba(8, 8, 8, 0.74), rgba(148, 32, 22, 0.58)),
-    url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Assorted%20Malawian%20food%2C%20Blantyre.jpg?width=1600") center/cover;
+    url("./assets/restaurant-hero.jpg") center/cover;
   padding: 24px;
 }
 
