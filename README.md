@@ -1,5 +1,5 @@
 # Restaurant Ordering Web-Based System
-#group project
+# GROUP PROJECT
 
 
 
