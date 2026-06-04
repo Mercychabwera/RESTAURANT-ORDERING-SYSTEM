@@ -14,32 +14,26 @@ import {
   UserRound,
 } from "lucide-react";
 import "./styles.css";
-import heroImage from "./assets/restaurant-hero.jpg";
-import nsimaImage from "./assets/nsima.jpg";
-import chamboImage from "./assets/chambo.jpg";
-import pizzaImage from "./assets/pizza.jpg";
-import burgerImage from "./assets/burger.jpg";
-import saladImage from "./assets/salad.jpg";
 import { api, formatMwk } from "./services/api";
 
 
 
 const malawiImages = {
-  nsima: nsimaImage,
-  nsimaChicken: nsimaImage,
-  nsimaPlate: nsimaImage,
-  chambo: chamboImage,
-  friedChambo: chamboImage,
-  chiwaya: burgerImage,
-  localDish: heroImage,
-  assorted: saladImage,
-  okraTomato: saladImage,
-  greens: saladImage,
-  chicken: burgerImage,
-  mandasi: pizzaImage,
-  fishChips: chamboImage,
-  pizza: pizzaImage,
-  burger: burgerImage,
+  nsima: "",
+  nsimaChicken: "",
+  nsimaPlate: "",
+  chambo: "",
+  friedChambo: "",
+  chiwaya: "",
+  localDish: "",
+  assorted: "",
+  okraTomato: "",
+  greens: "",
+  chicken: "",
+  mandasi: "",
+  fishChips: "",
+  pizza: "",
+  burger: "",
 };
 
 const fallbackMenu = [
@@ -220,7 +214,6 @@ function WelcomePage({ onContinue }) {
   return (
     <main className="welcome-page">
       <section className="welcome-content">
-        <img className="welcome-hero" src={heroImage} alt="Restaurant dining experience" />
         <div className="welcome-mark">
           <ChefHat size={54} />
         </div>
@@ -349,7 +342,6 @@ function MenuManagement({ menuItems, setMenuItems }) {
         <div className="menu-picture-grid">
           {visibleMeals.map((meal) => (
             <article className="food-card" key={meal.id}>
-              <img src={meal.image_url || fallbackImage(meal.category)} alt={meal.name} />
               <div>
                 <span>{meal.category}</span>
                 <strong>{meal.name}</strong>
@@ -386,15 +378,7 @@ function MenuManagement({ menuItems, setMenuItems }) {
               required
             />
           </label>
-          <label>
-            Picture URL
-            <input
-              placeholder="https://example.com/meal-photo.jpg"
-              value={form.image_url}
-              onChange={(event) => setForm({ ...form, image_url: event.target.value })}
-            />
-          </label>
-          <button className="primary">
+          <button type="submit" className="primary">
             <Plus size={18} />
             Add Meal
           </button>
@@ -458,7 +442,6 @@ function OrderPlacement({ menuItems, orders, setOrders, onSaved }) {
         <div className="meal-grid">
           {menuItems.map((meal) => (
             <button className="meal-tile" key={meal.id} onClick={() => addToCart(meal)}>
-              <img src={meal.image_url || fallbackImage(meal.category)} alt={meal.name} />
               <span>{meal.category}</span>
               <strong>{meal.name}</strong>
               <b>{formatMwk(meal.price_mwk)}</b>
@@ -489,7 +472,7 @@ function OrderPlacement({ menuItems, orders, setOrders, onSaved }) {
           <span>Total</span>
           <strong>{formatMwk(total)}</strong>
         </div>
-        <button className="primary" disabled={cart.length === 0}>
+        <button type="submit" className="primary" disabled={cart.length === 0}>
           <ReceiptText size={18} />
           Place Order
         </button>
@@ -504,10 +487,8 @@ function CategorySummary({ menuItems }) {
   return (
     <div className="category-showcase">
       {categories.map((category) => {
-        const sample = menuItems.find((meal) => meal.category === category);
         return (
           <div className="category-card" key={category}>
-            <img src={sample?.image_url || fallbackImage(category)} alt={category} />
             <strong>{category}</strong>
             <span>{menuItems.filter((meal) => meal.category === category).length} meals</span>
           </div>
@@ -518,17 +499,7 @@ function CategorySummary({ menuItems }) {
 }
 
 function fallbackImage(category) {
-  const images = {
-    "Local Meals": malawiImages.nsimaChicken,
-    "Rice Dishes": malawiImages.localDish,
-    "Fast Foods": malawiImages.chiwaya,
-    Vegetarian: malawiImages.okraTomato,
-    Breakfast: malawiImages.mandasi,
-    "Light Meals": malawiImages.greens,
-  };
-  // NOTE: keep fallback images food-only (avoid any child-related photos).
-
-  return images[category] || malawiImages.nsima;
+  return "";
 }
 
 function KitchenDashboard({ orders, onSaved }) {
