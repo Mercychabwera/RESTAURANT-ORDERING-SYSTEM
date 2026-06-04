@@ -410,28 +410,41 @@ function OrderPlacement({ menuItems, orders, setOrders, onSaved }) {
 
   async function placeOrder(event) {
     event.preventDefault();
+    
+    if (cart.length === 0) {
+      alert("Please add items to your cart before placing an order.");
+      return;
+    }
+    
+    const effectiveCustomerName = customerName.trim() || "Guest Customer";
     const payload = {
-      customer_name: customerName,
+      customer_name: effectiveCustomerName,
       table_number: tableNumber,
       items: cart.map((item) => ({ menu_item: item.id, quantity: item.quantity })),
     };
+    
     try {
-      await api.createOrder(payload);
+      const result = await api.createOrder(payload);
+      setCustomerName("");
+      setTableNumber("");
+      setCart([]);
       await onSaved();
-    } catch {
+      alert("Order placed successfully!");
+    } catch (error) {
       const localOrder = {
         id: `local-${Date.now()}`,
-        customer_name: customerName,
+        customer_name: effectiveCustomerName,
         table_number: tableNumber,
         status: "PLACED",
         total_mwk: total,
         items: cart.map((item) => ({ menu_item_name: item.name, quantity: item.quantity })),
       };
       setOrders([localOrder, ...orders]);
+      setCustomerName("");
+      setTableNumber("");
+      setCart([]);
+      alert("Order placed successfully (local storage)!");
     }
-    setCustomerName("");
-    setTableNumber("");
-    setCart([]);
   }
 
   return (
@@ -453,7 +466,11 @@ function OrderPlacement({ menuItems, orders, setOrders, onSaved }) {
         <h2>Current Order</h2>
         <label>
           Customer name
-          <input value={customerName} onChange={(event) => setCustomerName(event.target.value)} required />
+          <input
+            value={customerName}
+            onChange={(event) => setCustomerName(event.target.value)}
+            placeholder="Guest Customer"
+          />
         </label>
         <label>
           Table number
@@ -578,20 +595,54 @@ function SalesReport({ report, bills, orders }) {
     return bill.payment_status === "PAID" ? sum + Number(bill.amount_mwk) : sum;
   }, 0);
 
+  const reportData = {
+    total_sales_mwk: report?.total_sales_mwk ?? localSales,
+    paid_orders: report?.paid_orders ?? bills.filter((bill) => bill.payment_status === "PAID").length,
+    open_bills: report?.open_bills ?? bills.filter((bill) => bill.payment_status === "UNPAID").length,
+    total_orders: report?.total_orders ?? orders.length,
+    total_items_sold: report?.total_items_sold ?? 0,
+    today_sales_mwk: report?.today_sales_mwk ?? 0,
+    today_orders: report?.today_orders ?? 0,
+    average_order_value_mwk: report?.average_order_value_mwk ?? 0,
+  };
+
   return (
     <section className="grid three">
+      {/* Key Metrics */}
       <div className="metric">
         <span>Total Sales</span>
-        <strong>{formatMwk(report?.total_sales_mwk ?? localSales)}</strong>
+        <strong>{formatMwk(reportData.total_sales_mwk)}</strong>
       </div>
       <div className="metric">
         <span>Paid Orders</span>
-        <strong>{report?.paid_orders ?? bills.filter((bill) => bill.payment_status === "PAID").length}</strong>
+        <strong>{reportData.paid_orders}</strong>
       </div>
       <div className="metric">
         <span>Open Bills</span>
-        <strong>{report?.open_bills ?? bills.filter((bill) => bill.payment_status === "UNPAID").length}</strong>
+        <strong>{reportData.open_bills}</strong>
       </div>
+      <div className="metric">
+        <span>Total Items Sold</span>
+        <strong>{reportData.total_items_sold}</strong>
+      </div>
+      <div className="metric">
+        <span>Today's Sales</span>
+        <strong>{formatMwk(reportData.today_sales_mwk)}</strong>
+      </div>
+      <div className="metric">
+        <span>Today's Orders</span>
+        <strong>{reportData.today_orders}</strong>
+      </div>
+      <div className="metric">
+        <span>Avg Order Value</span>
+        <strong>{formatMwk(reportData.average_order_value_mwk)}</strong>
+      </div>
+      <div className="metric">
+        <span>Total Orders</span>
+        <strong>{reportData.total_orders}</strong>
+      </div>
+
+      {/* Popular Meals */}
       <div className="panel full">
         <h2>Popular Meals</h2>
         <div className="table">
@@ -610,6 +661,26 @@ function SalesReport({ report, bills, orders }) {
           {!report?.popular_items?.length && <p className="muted">Paid order sales will appear here.</p>}
         </div>
       </div>
+
+      {/* Category Breakdown */}
+      <div className="panel full">
+        <h2>Sales by Category</h2>
+        <div className="table">
+          <div className="table-row table-head">
+            <span>Category</span>
+            <span>Items Sold</span>
+          </div>
+          {(report?.category_breakdown || []).map((item) => (
+            <div className="table-row" key={item.menu_item__category}>
+              <strong>{item.menu_item__category}</strong>
+              <span>{item.total_quantity}</span>
+            </div>
+          ))}
+          {!report?.category_breakdown?.length && <p className="muted">Category data will appear here.</p>}
+        </div>
+      </div>
+
+      {/* Recent Orders */}
       <div className="panel full">
         <h2>Recent Orders</h2>
         <div className="order-board compact">

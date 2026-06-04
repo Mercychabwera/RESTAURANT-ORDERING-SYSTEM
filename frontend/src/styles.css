@@ -18,9 +18,10 @@ body {
   display: grid;
   place-items: center;
   padding: 24px;
-  background:
-    linear-gradient(rgba(8, 8, 8, 0.24), rgba(148, 32, 22, 0.28)),
-    url("./assets/restaurant-hero.jpg") center/cover no-repeat;
+  background-image: linear-gradient(rgba(8, 8, 8, 0.32), rgba(148, 32, 22, 0.34)), url("./assets/pizza.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .welcome-content {
@@ -52,9 +53,7 @@ button {
   min-height: 100vh;
   display: grid;
   place-items: center;
-  background:
-    linear-gradient(rgba(8, 8, 8, 0.74), rgba(148, 32, 22, 0.58)),
-    url("./assets/restaurant-hero.jpg") center/cover;
+  background: linear-gradient(rgba(8, 8, 8, 0.74), rgba(148, 32, 22, 0.58));
   padding: 24px;
 }
 
@@ -577,16 +576,7 @@ nav {
   text-transform: uppercase;
 }
 
-/* Minimal layout for welcome page so it looks good */
-.welcome-page {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  background:
-    linear-gradient(rgba(8, 8, 8, 0.74), rgba(148, 32, 22, 0.58)),
-    url("./assets/restaurant-hero.jpg") center/cover;
-  padding: 24px;
-}
+
 
 .welcome-content {
   width: min(720px, 100%);
